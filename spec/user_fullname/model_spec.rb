@@ -42,6 +42,7 @@ describe DummyClass do
     let(:firstname) { rand_name }
     let(:lastname) { rand_name }
     let(:fullname) { [firstname, lastname].join(' ') }
+    let(:shortname) { "#{firstname[0]}.#{lastname}" }
     subject { DummyClass.new(fullname) }
 
     # its(:fullname) { should eq(fullname) }
@@ -55,5 +56,6 @@ describe DummyClass do
       subject.fullname = "#{firstname} "
       should eq("")
     end
+    its(:shortname) { should eq(shortname) }
   end
 end

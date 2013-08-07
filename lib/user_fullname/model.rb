@@ -29,6 +29,10 @@ module UserFullname
     update_fullname
   end
 
+  def shortname
+    "#{firstname[0]}.#{lastname}"
+  end
+
   private
     def update_fullname
       send(:fullname=, [@firstname, @lastname].join(' '))
