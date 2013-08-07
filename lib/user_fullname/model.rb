@@ -12,10 +12,7 @@ module UserFullname
   end
 
   def firstname
-    name = fullname
-    @firstname = if name and array = name.split(/\s/)
-      array[0]
-    end or ""
+    @firstname = parse(0)
   end
 
   def firstname=(value)
@@ -24,10 +21,7 @@ module UserFullname
   end
 
   def lastname
-    name = fullname
-    @lastname = if name and array = name.split(/\s/)
-      array[1]
-    end or ""
+    @lastname = parse(1)
   end
 
   def lastname=(value)
@@ -38,5 +32,12 @@ module UserFullname
   private
     def update_fullname
       send(:fullname=, [@firstname, @lastname].join(' '))
+    end
+
+    def parse(order)
+      name = fullname
+      if name and array = name.split(/\s/)
+        array[order]
+      end or ""
     end
 end
