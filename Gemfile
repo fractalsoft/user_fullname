@@ -4,8 +4,9 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
+  gem 'codeclimate-test-reporter', require: nil
   gem 'coveralls', require: false
-  gem 'rspec'
+  gem 'rspec', '~> 3.0.0.beta1'
   gem 'reek'
   gem 'guard'
   gem 'guard-bundler'

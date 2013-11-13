@@ -8,5 +8,5 @@ def rand_name
 end
 
 def rand_fullname
-  [rand_text, rand_text].map(&:capitalize).join
+  "#{rand_name} #{rand_name}"
 end

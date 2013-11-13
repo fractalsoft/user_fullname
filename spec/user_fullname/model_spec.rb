@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'spec_helper'
 
+# Testing class
 class DummyClass
   attr_accessor :fullname
 
@@ -12,7 +13,7 @@ class DummyClass
 end
 
 describe DummyClass do
-  context "set" do
+  context 'set' do
     let(:firstname) { rand_name }
     let(:lastname) { rand_name }
     subject { DummyClass.new(rand_fullname) }
@@ -38,7 +39,7 @@ describe DummyClass do
     end
   end
 
-  context "get" do
+  context 'get' do
     let(:firstname) { rand_name }
     let(:lastname) { rand_name }
     let(:fullname) { [firstname, lastname].join(' ') }
@@ -50,11 +51,11 @@ describe DummyClass do
     its(:lastname) { should eq(lastname) }
     its(:firstname) do
       subject.fullname = " #{lastname}"
-      should eq("")
+      should eq('')
     end
     its(:lastname) do
       subject.fullname = "#{firstname} "
-      should eq("")
+      should eq('')
     end
     its(:shortname) { should eq(shortname) }
   end

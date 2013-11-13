@@ -1,4 +1,6 @@
 # encoding: utf-8
+
+# The most commonly used user's methods
 module UserFullname
   def fullname
     @fullname = super
@@ -34,14 +36,16 @@ module UserFullname
   end
 
   private
+
     def update_fullname
       send(:fullname=, [@firstname, @lastname].join(' '))
     end
 
     def parse(order)
       name = fullname
-      if name and array = name.split(/\s/)
+      if name
+        array = name.split(/\s/)
         array[order]
-      end or ""
+      end || ''
     end
 end
