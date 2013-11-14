@@ -11,4 +11,5 @@ group :development, :test do
   gem 'guard'
   gem 'guard-bundler'
   gem 'guard-rspec'
+  gem 'rb-readline', '~> 0.5.0', require: false
 end

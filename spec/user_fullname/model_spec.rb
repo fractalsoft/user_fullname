@@ -23,19 +23,25 @@ describe DummyClass do
       @fullname = [firstname, lastname].join(' ')
     end
 
-    its(:fullname) do
-      subject.fullname = @fullname
-      should eq(@fullname)
+    describe '#fullname' do
+      it do
+        subject.fullname = @fullname
+        expect(subject.fullname).to eq(@fullname)
+      end
     end
 
-    its(:fullname) do
-      subject.firstname = firstname
-      should eq([firstname, @lastname].join(' '))
+    describe '#firstname' do
+      it do
+        subject.firstname = firstname
+        expect(subject.fullname).to eq([firstname, @lastname].join(' '))
+      end
     end
 
-    its(:fullname) do
-      subject.lastname = lastname
-      should eq([@firstname, lastname].join(' '))
+    describe '#lastname' do
+      it do
+        subject.lastname = lastname
+        expect(subject.fullname).to eq([@firstname, lastname].join(' '))
+      end
     end
   end
 
@@ -46,17 +52,52 @@ describe DummyClass do
     let(:shortname) { "#{firstname[0]}.#{lastname}" }
     subject { DummyClass.new(fullname) }
 
-    # its(:fullname) { should eq(fullname) }
-    its(:firstname) { should eq(firstname) }
-    its(:lastname) { should eq(lastname) }
-    its(:firstname) do
-      subject.fullname = " #{lastname}"
-      should eq('')
+    describe '#fullname' do
+      it { expect(subject.fullname).to eq(fullname) }
     end
-    its(:lastname) do
-      subject.fullname = "#{firstname} "
-      should eq('')
+
+    describe '#firstname' do
+      it { expect(subject.firstname).to eq(firstname) }
     end
-    its(:shortname) { should eq(shortname) }
+
+    describe '#lastname' do
+      it { expect(subject.lastname).to eq(lastname) }
+    end
+
+    describe '#shortname' do
+      it { expect(subject.shortname).to eq(shortname) }
+    end
+
+    describe '#firstname' do
+      it do
+        subject.fullname = " #{lastname}"
+        expect(subject.firstname).to eq('')
+      end
+    end
+
+    describe '#lastname' do
+      it do
+        subject.fullname = "#{firstname} "
+        expect(subject.lastname).to eq('')
+      end
+    end
+  end
+
+  describe 'long name' do
+    it 'double firstname' do
+      names = 'David Lee Roth'
+      subject.fullname = 'David Lee Roth'
+      # subject.firstname = 'David Lee'
+      # subject.lastname = 'Roth'
+      expect(subject.fullname).to eq(names)
+    end
+
+    it 'double lastname' do
+      names = 'Abraham Van Helsing'
+      subject.fullname = names
+      # subject.firstname = 'Abraham'
+      # subject.lastname = 'Van Helsing'
+      expect(subject.fullname).to eq(names)
+    end
   end
 end
